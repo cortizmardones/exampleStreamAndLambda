@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Lambda {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		try {
 
@@ -23,6 +23,8 @@ public class Lambda {
 			listaPersonas.add(personaFrancisco);
 			listaPersonas.add(personaJaime);
 			listaPersonas.add(personaAlma);
+			
+			List<Persona> listaP = listaPersonas.stream().filter(p-> p.getNombre().equalsIgnoreCase("s")).map(m->m).collect(Collectors.toList());
 
 			// Ejemplo de filtrado y devolución de datos.
 			List<Persona> listaPersonaFiltradas1 = listaPersonas.stream()
@@ -47,7 +49,12 @@ public class Lambda {
 			});
 
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
+			
+			// IMPRIMO LA TRAZA DE LA EXCEPCION
+			e.printStackTrace();
+			
+			// LANZO LA EXCEPCION Y DETENGO EL RUNTIME
+			throw new Exception(e);
 		}
 
 	}
